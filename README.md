@@ -19,14 +19,13 @@ data "azurerm_subnet" "two" {
 
 module "nat" {
   source  = "data-platform-hq/nat-gateway/azurerm"
+  version = "~> 1.0"
 
-  project  = "datahq"
-  env      = "example"
-  location = "eastus"
-  suffix   = "databricks"
-  tags     = { environment = "example" }
+  nat_gateway_name = "datahq-nat"
+  location         = "eastus"
+  tags             = { environment = "example" }
+  resource_group   = "example_rg"
 
-  resource_group = "example_rg"
   subnets        = {
     (data.azurerm_subnet.one.name) = data.azurerm_subnet.one.id,
     (data.azurerm_subnet.two.name) = data.azurerm_subnet.two.id
