@@ -1,5 +1,5 @@
 variable "nat_gateway_name" {
-  type = string
+  type        = string
   description = "NAT Gateway name"
 }
 
@@ -20,9 +20,9 @@ variable "tags" {
 }
 
 variable "nat_gateway_public_ip_name" {
-  type = string
+  type        = string
   description = "NAT Gateway public ip resource name"
-  default = null
+  default     = null
 }
 
 variable "subnets" {
