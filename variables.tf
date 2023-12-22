@@ -1,11 +1,11 @@
-variable "project" {
+variable "nat_gateway_name" {
   type        = string
-  description = "Project name"
+  description = "NAT Gateway name"
 }
 
-variable "env" {
+variable "resource_group" {
   type        = string
-  description = "Environment name"
+  description = "Resource group"
 }
 
 variable "location" {
@@ -19,9 +19,10 @@ variable "tags" {
   default     = {}
 }
 
-variable "resource_group" {
+variable "nat_gateway_public_ip_name" {
   type        = string
-  description = "Resource group"
+  description = "NAT Gateway public ip resource name"
+  default     = null
 }
 
 variable "subnets" {
@@ -30,27 +31,21 @@ variable "subnets" {
   default     = {}
 }
 
-variable "suffix" {
-  type        = string
-  description = "Resources suffix"
-  default     = ""
-}
-
-variable "public_ip" {
+variable "public_ip_configuration" {
   type = object({
     allocation_method = optional(string, "Static")
     sku               = optional(string, "Standard")
-    zones             = optional(list(string), ["1"])
+    zones             = optional(list(string), [])
   })
   description = "Configuration options for public ip"
   default     = {}
 }
 
-variable "nat" {
+variable "nat_gateway_configuration" {
   type = object({
     sku       = optional(string, "Standard")
     idle_time = optional(number, 10)
-    zones     = optional(list(string), ["1"])
+    zones     = optional(list(string), [])
   })
   description = "Configuration options for azure nat gateway"
   default     = {}

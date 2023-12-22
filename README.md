@@ -19,14 +19,13 @@ data "azurerm_subnet" "two" {
 
 module "nat" {
   source  = "data-platform-hq/nat-gateway/azurerm"
+  version = "~> 1.0"
 
-  project  = "datahq"
-  env      = "example"
-  location = "eastus"
-  suffix   = "databricks"
-  tags     = { environment = "example" }
+  nat_gateway_name = "datahq-nat"
+  location         = "eastus"
+  tags             = { environment = "example" }
+  resource_group   = "example_rg"
 
-  resource_group = "example_rg"
   subnets        = {
     (data.azurerm_subnet.one.name) = data.azurerm_subnet.one.id,
     (data.azurerm_subnet.two.name) = data.azurerm_subnet.two.id
@@ -66,15 +65,14 @@ No modules.
 
 | Name                                                                         | Description| Type| Default| Required |
 |------------------------------------------------------------------------------|------------|-----|--------|----------|
-| <a name="input_project"></a> [project](#input\_project)                      | Project name | `string`| n/a |    yes    |
-| <a name="input_env"></a> [env](#input\_env)                                  | Environment name | `string`| n/a |    yes    |
+| <a name="input_nat_gateway_name"></a> [nat\_gateway\_name](#input\_nat\_gateway\_name) | NAT Gateway name | `string`| n/a |    yes    |
+| <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | Resource group | `string` | n/a |    yes    |
 | <a name="input_location"></a> [location](#input\_location)                   | Azure location | `string`| n/a |    yes    |
 | <a name="input_tags"></a> [tags](#input\_tags)                               | Resource tags | `map(any)`| {} |    no    |
-| <a name="input_resource_group"></a> [resource_group](#input\_resource_group) | Resource group | `string` | n/a |    yes    |
+| <a name="input_nat_gateway_public_ip_name"></a> [nat\_gateway\_public\_ip\_name](#input\_nat\_gateway\_public\_ip\_name) | NAT Gateway public ip resource name | `string`| null |    no    |
 | <a name="input_subnets"></a> [subnets](#input\_subnets)                      | Name to id map of subnet associated with NAT Gateway | `map(string)`| {} |    no    |
-| <a name="input_suffix"></a> [suffix](#input\_suffix)                         | Resources suffix | `string`| "" |    no    |
-| <a name="input_public_ip"></a> [public_ip](#input\_public_ip)                | Configuration options for azurerm public ip | <pre>type = object({<br>  allocation_method = optional(string)<br>  sku               = optional(string)<br>  zones             = optional(list(string))<br>})</pre> |  <pre>type = object({<br>  allocation_method = optional(string, "Static")<br>  sku               = optional(string, "Standard")<br>  zones             = optional(list(string), ["1"])<br>})</pre> |    no    |
-| <a name="input_nat"></a> [nat](#input\_nats)                                 | Configuration options for azurerm nat gateway | <pre>type = object({<br>  sku       = optional(string)<br>  idle_time = optional(number)<br>  zones     = optional(list(string))<br>})</pre> | <pre>type = object({<br>  sku       = optional(string, "Standard")<br>  idle_time = optional(number, 10)<br>  zones     = optional(list(string), ["1"])<br>})</pre> |    no    |
+| <a name="input_public_ip_configuration"></a> [public\_ip\_configuration](#input\_public\_ip\_configuration)                | Configuration options for public ip | <pre>object({<br>  allocation_method = optional(string)<br>  sku               = optional(string)<br>  zones             = optional(list(string))<br>})</pre> |  <pre>({<br>  allocation_method = optional(string, "Static")<br>  sku               = optional(string, "Standard")<br>  zones             = optional(list(string), [])<br>})</pre> |    no    |
+| <a name="input_nat_gateway_configuration"></a> [nat\_gateway\_configuration](#input\_nat\_gateway\_configuration) | Configuration options for azure nat gateway | <pre>object({<br>  sku       = optional(string)<br>  idle_time = optional(number)<br>  zones     = optional(list(string))<br>})</pre> | <pre>({<br>  sku       = optional(string, "Standard")<br>  idle_time = optional(number, 10)<br>  zones     = optional(list(string), ["1"])<br>})</pre> |    no    |
 
 ## Outputs
 

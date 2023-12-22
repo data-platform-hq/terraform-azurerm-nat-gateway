@@ -1,31 +1,27 @@
-locals {
-  suffix = length(var.suffix) == 0 ? "" : "-${var.suffix}"
-}
-
 resource "azurerm_public_ip" "this" {
-  name                = "nat-${var.project}-${var.env}-${var.location}${local.suffix}"
+  name                = coalesce(var.nat_gateway_public_ip_name, "ip-${var.nat_gateway_name}")
   location            = var.location
   resource_group_name = var.resource_group
-  allocation_method   = var.public_ip.allocation_method
-  sku                 = var.public_ip.sku
-  zones               = var.public_ip.zones
+  allocation_method   = var.public_ip_configuration.allocation_method
+  sku                 = var.public_ip_configuration.sku
+  zones               = var.public_ip_configuration.zones
   tags                = var.tags
 
   lifecycle {
     precondition {
-      condition     = var.nat.sku == "Standard" && var.public_ip.allocation_method == "Static" ? true : false
+      condition     = var.nat_gateway_configuration.sku == "Standard" && var.public_ip_configuration.allocation_method == "Static" ? true : false
       error_message = "Public IP Standard SKUs require allocation_method to be set to Static"
     }
   }
 }
 
 resource "azurerm_nat_gateway" "this" {
-  name                    = "nat-${var.project}-${var.env}-${var.location}${var.suffix}"
+  name                    = var.nat_gateway_name
   location                = var.location
   resource_group_name     = var.resource_group
-  sku_name                = var.nat.sku
-  idle_timeout_in_minutes = var.nat.idle_time
-  zones                   = var.nat.zones
+  sku_name                = var.nat_gateway_configuration.sku
+  idle_timeout_in_minutes = var.nat_gateway_configuration.idle_time
+  zones                   = var.nat_gateway_configuration.zones
   tags                    = var.tags
 }
 
