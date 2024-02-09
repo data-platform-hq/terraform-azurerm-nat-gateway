@@ -1,5 +1,5 @@
 resource "azurerm_public_ip" "this" {
-  name                = coalesce(var.nat_gateway_public_ip_name, "ip-${var.nat_gateway_name}")
+  name                = coalesce(var.nat_gateway_public_ip_name, "pip-${var.nat_gateway_name}")
   location            = var.location
   resource_group_name = var.resource_group
   allocation_method   = var.public_ip_configuration.allocation_method

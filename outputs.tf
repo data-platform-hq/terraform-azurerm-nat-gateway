@@ -1,6 +1,11 @@
-output "nat_id" {
+output "id" {
   value       = azurerm_nat_gateway.this.id
   description = "Nat gateway id"
+}
+
+output "name" {
+  value       = azurerm_nat_gateway.this.name
+  description = "Nat gateway name"
 }
 
 output "public_ip_address" {
