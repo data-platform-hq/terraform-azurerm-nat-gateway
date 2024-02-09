@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/data-platform-hq/terraform-azurerm-nat-gateway/compare/v1.1.0...v1.1.1) (2024-02-09)
+
+
+### Bug Fixes
+
+* updated outputs ([dfbe28d](https://github.com/data-platform-hq/terraform-azurerm-nat-gateway/commit/dfbe28d6be62f30c65c6ee84e83480efe3a7bd3f))
+
 # [1.1.0](https://github.com/data-platform-hq/terraform-azurerm-nat-gateway/compare/v1.0.0...v1.1.0) (2023-12-22)
 
 
