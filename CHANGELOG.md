@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/data-platform-hq/terraform-azurerm-nat-gateway/compare/v1.1.1...v1.2.0) (2024-09-13)
+
+
+### Bug Fixes
+
+* replaced pre-commit repo docs creation/update by GH Actions ([d41ed55](https://github.com/data-platform-hq/terraform-azurerm-nat-gateway/commit/d41ed55dfd4ab24b4eea63456544a8b36237870c))
+
+
+### Features
+
+* upgrade to azurerm v4 ([f11c403](https://github.com/data-platform-hq/terraform-azurerm-nat-gateway/commit/f11c403442e6a1c175929bb1d8185340eafe2445))
+
 ## [1.1.1](https://github.com/data-platform-hq/terraform-azurerm-nat-gateway/compare/v1.1.0...v1.1.1) (2024-02-09)
 
 
