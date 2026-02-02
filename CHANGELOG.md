@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/data-platform-hq/terraform-azurerm-nat-gateway/compare/v1.2.0...v1.3.0) (2026-02-02)
+
+
+### Features
+
+* upgrade provider to AzureRM v4.0 ([023aa4c](https://github.com/data-platform-hq/terraform-azurerm-nat-gateway/commit/023aa4c2b4b9f84ebc1482468a1128220900b929))
+
 # [1.2.0](https://github.com/data-platform-hq/terraform-azurerm-nat-gateway/compare/v1.1.1...v1.2.0) (2024-09-13)
 
 
